@@ -9,11 +9,15 @@ interface IController {
 abstract class Controller implements IController{
 	protected $view;
     protected $parameters;
+    protected $oauth;
 
     public function setParameters($parameters){
         $this->parameters = $parameters;
     }
-
+    
+    public function setOAuth($oauth){
+        $this->oauth = $oauth;
+    }
 
 	public function display(){
 		$this->view->render();
@@ -29,11 +33,12 @@ abstract class HTMLController extends Controller {
 
 class ControllerFactory {
 
-    static function getController($controllerName, $parameters){
+    static function getController($controllerName, $parameters, $oauth){
         require_once(INCLUDE_DIR . 'controllers/' . $controllerName . '.php');
 
         $controller = new $controllerName();
         $controller->setParameters($parameters);
+        $controller->setOAuth($oauth);
 
         return $controller;
     }
@@ -48,7 +53,7 @@ abstract class Model {
 
 abstract class DatabaseModel {
     protected $dataSource;
-    private static  $dataSource = null;
+    private static  $staticDataSource = null;
 
 
 
@@ -57,15 +62,15 @@ abstract class DatabaseModel {
     }
 
     public static function getDataSource(){
-        if(ModelFactory::$dataSource == null){
+        if(DatabaseModel::$staticDataSource == null){
             //TODO: fill this out if using database
             $dsn = 'mysql:host=;dbname=;charset=utf8';
             $username = '';
             $password = '';
 
-            ModelFactory::$dataSource = new PDO($dsn, $username, $password);        
+            DatabaseModel::$dataSource = new PDO($dsn, $username, $password);        
         } 
-        return ModelFactory::$dataSource;
+        return DatabaseModel::$dataSource;
     }
 }
 

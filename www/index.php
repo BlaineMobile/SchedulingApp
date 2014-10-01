@@ -31,11 +31,24 @@
 
 
 define('INCLUDE_DIR', dirname(__FILE__) . '/php/' );
+define('LIB_DIR', dirname(__FILE__) . '/php/lib/');
 define('CSRF_LENGTH', 64);
+
+set_include_path(get_include_path() . ':' . LIB_DIR);
 
 require_once(INCLUDE_DIR . 'mvc.php');
 require_once(INCLUDE_DIR . 'ApplicationState.php');
 require_once(INCLUDE_DIR . 'SecurityUtils.php');
+require_once(INCLUDE_DIR . 'OAuth.php');
+
+$oauth = new OAuth();
+
+session_start();
+
+
+if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+  $oauth->setAccessToken($_SESSION['access_token']);
+}
 
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
 $path = trim($path);
@@ -43,21 +56,20 @@ $elements = explode('/', $path);
 
 $controllerName = "";   
 
-session_start();
 
 if(count($elements)  == 0 || $elements[0] == '') {                  
 	$controllerName = "HomeController";
+} else if(strstr($elements[0], 'oauth2callback')) {
+    $controllerName = "AuthController";
 } else switch(strtolower(array_shift($elements))) {
     //TODO: this actually seems like a lot of duplicate code, but having explicit controller names is good in some senses....
-    case 'some link':
-    	$controllerName = "SomeController";
-        break;
+
     default:
         $controllerName = "Error404Controller";
 } 
 //TODO: refactor controller calling etc..
 
-$controller = ControllerFactory::getController($controllerName, $elements);
+$controller = ControllerFactory::getController($controllerName, $elements, $oauth);
 $controller->control();
 $controller->display();
 
