@@ -19,10 +19,6 @@ class HomeController extends HTMLController {
 
 			print_r($service->tasklists->listTasklists());
 		} else {
-			$this->view->createHead('My Tasks', ['somecssfile'],['somejsfile']);
-			$this->view->createHeader();
-			$this->view->createFooter();
-
 			$this->view->authURL = $this->oauth->getAuthUrl();
 			$this->view->message = "You're not logged in yet.";
 		}
