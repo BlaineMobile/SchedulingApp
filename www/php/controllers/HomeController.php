@@ -16,11 +16,17 @@ class HomeController extends HTMLController {
 		
 		if($this->oauth->isAuthed()){
 			$service = new Google_Service_Tasks($this->oauth->getClient());
-
-			print_r($service->tasklists->listTasklists());
+			//$this->view->message = "Oh BOYY look at your tasklists.";
+			$tasklists = $service->tasklists->listTasklists();
+			$this->view->tasksListList = new View("TasksListList");
+			$tasksLists = [];
+			foreach($tasklists->getItems() as $item) {
+				$tasks[] = $service->tasks->listTasks($item->id);
+			}
+			$this->view->tasksListList->tasksLists = $tasks;
 		} else {
 			$this->view->authURL = $this->oauth->getAuthUrl();
-			$this->view->message = "You're not logged in yet.";
+			//$this->view->message = "You're not logged in yet.";
 		}
 
 	}

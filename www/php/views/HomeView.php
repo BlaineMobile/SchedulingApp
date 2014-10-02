@@ -5,6 +5,8 @@
 
 		<div id="content">
 			<a href="<?= $this->authURL;?>">Login!</a>
+			<?= $this->message; ?>
+			<?php $this->tasksListList->render(); ?>
 		</div>
 
 		<?php $this->footer->render(); ?>
