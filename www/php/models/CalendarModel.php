@@ -37,10 +37,52 @@ class CalendarModel {
 
 	public function getFreeTimes($endDate, $requiredTime) {
 		$service = new Google_Service_Calendar($this->user->getClient());
-		$eventList = $this->getAllCalendarEvents();
 
 		// set default timezone
 		date_default_timezone_set('America/Edmonton');
+
+		$events = $this->getAllCalendarEvents(new DateTime(), $endDate);
+
+		//Find free time
+
+		//round now till first second of tomorrow
+
+		$availableStart = 9;
+		$availableDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+		$free = [];
+
+		$cur = new DateTime();
+		$cur->modify("+1 day");
+		$cur->setTime(0,0,0);
+
+		for($cur = time(); $cur < $endDate->getTimeStamp(); $cur += 24*60*60) {
+
+			if(!in_array(date('D', $cur), $availableDays)) {
+				continue;
+			}
+
+			$start = $cur + $availableStart*60;
+
+			//$length = $availableEnd - $availableStart;
+			$length = 8;
+
+			//$end = $start + $length*60;
+
+			$free[] = new Duration($start, $length*60*60);
+
+		}
+
+		//recursively add compute intersection into free or whatefer
+
+		foreach($free as $currentTime) {
+			foreach() {
+				$currentTime->computeIntersection();
+			}
+		}
+
+
+
 
 	}
 
@@ -49,9 +91,12 @@ class CalendarModel {
 	// 	$this->calendar = 
 	// }
 
-	public function getAllCalendarEvents() {
+	public function getAllCalendarEvents($start, $due) {
+
+		$optparam = ["timeMax" => $start, "timeMin" => $due];
+
 		$service = new Google_Service_Calendar($this->user->getClient());
-		$calList = $service->calendarList->listCalendarList()->getItems();
+		$calList = $service->calendarList->listCalendarList()->getItems($optparam);
 
 		$eventsList = array();
 
@@ -82,17 +127,46 @@ class CalendarModel {
 }
 
 
-class Space {
-	public $date;
+class Duration {
+	public $start;
 	public $duration;
+	public $end;
 	
-	function __construct($date, $duration) {
-		$this->date = $date;
-		$this->duration = $duration;
+	function __construct($start, $end) {
+		$this->start = $stat;
+		$this->end = $end;
 	}
+
+	public function computeIntersection($dur2) {
+		//dur2 has start and end
+		//If dur2 is within this duration
+
+
+		//Start and END both in
+		if($dur2->start > $this->start && $dur2->end < $this->end) {
+			return [new Duration($this->start, $cur2->start), new Duration($cur2->end, $this->end)];
+		}
+
+		//whole thing encompassed
+		} else if($dur2->start < $this->start && $dur2->end > $this->end) {
+			return null;
+
+		//start in end not
+		} else if($dur2->start > $this->start && $dur2->start < $this->end && $dur2->end > $this->end) {
+			return new Duration($this->start, cur2->start);
+		//end in start not
+		} else if($dur2->start < $this->start && $dur2->end < $this->end && $dur2->end > $this->start) {
+			return new Duration(cur2->end, this->end);
+	
+		} else {
+			return this;
+		} 
+	} 
 
 
 }
+
+
 
 
 ?>
