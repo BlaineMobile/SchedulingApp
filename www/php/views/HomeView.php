@@ -1,6 +1,6 @@
 <html>
 	<?php
-		$this->createHead('Create new Schedule Thing', ['general'],['somejsfile']);
+		$this->createHead('Create new Schedule Thing');
 		$this->createHeader();
 		$this->createFooter();
 		$this->head->render(); 
@@ -9,22 +9,23 @@
 		<?php $this->header->render(); ?>
 
 		<div id="content" style='text-align:center'>
-			<h2> Schedule for... </h2>
+			<h2> Schedule for:</h2>
 
-            <div class='page-header'></div>
             <span>
                 <a href='/create/new' >
-                    <button class='btn btn-success screen-wide-button' type='button'> Existing Event </button>
+                    <button class='btn btn-success default-button' type='button'> Existing Event </button>
                 </a>
             </span>
             <span>
                 <a href='#'>
-                    <button class='btn btn-success screen-wide-button' type='button'> New Event </button>
+                    <button class='btn btn-success default-button' type='button'> New Event </button>
                 </a>
             </span>
-            <h2> Or...</h2>
+            <div class='page-header'></div>
+
+            <h2> Or </h2>
             <a href='#'>
-            	<button class='btn btn-success screen-wide-button' type='button'> Edit </button>
+            	<button class='btn btn-success default-button' type='button'> Edit </button>
             </a>
 
 		</div>

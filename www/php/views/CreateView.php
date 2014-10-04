@@ -1,6 +1,6 @@
 <html>
 	<?php
-		$this->createHead('Create new Schedule Thing', ['general'],['somejsfile']);
+		$this->createHead('Create new Schedule Thing');
 		$this->createHeader();
 		$this->createFooter();
 		

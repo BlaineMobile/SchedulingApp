@@ -1,6 +1,6 @@
 <html>
 	<?php
-		$this->createHead('Create new Schedule Thing', ['general'],['somejsfile']);
+		$this->createHead('Create new Schedule Thing');
 		$this->createHeader();
 		$this->createFooter();
 		$this->head->render(); 
@@ -10,7 +10,7 @@
 
 		<div id="content" style='text-align:center'>
 			<a href="<?= $this->authURL;?>">
-				<button id='login' class='btn btn-success' type='button'> LOGIN </button> 
+				<button id='login' class='btn btn-success circle-button' type='button'> LOGIN </button> 
 			</a>
 		</div>
 
