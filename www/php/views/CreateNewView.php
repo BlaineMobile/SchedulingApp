@@ -11,10 +11,17 @@
 
 		<div id="content">
 
+			<h1> 
+				<?= $this->error; ?>
+			</h1>
+
+
 			<form action="" method="post"> 
 				<?= SecurityUtils::getCSRFField("createnew"); ?>
-				<input type="text" name="title" value="<?= $this->field1; ?>" />
-				<input type="text" name="time" value="<?= $this->field1; ?>" />
+				<input type="text" name="title" value="<?= $this->title; ?>" />
+				<input type="text" name="time" value="<?= $this->time; ?>" />
+				<input type="text" name="date" value="<?= $this->date; ?>" />
+
 
 				<input type="submit" name="submit">
 			</form>

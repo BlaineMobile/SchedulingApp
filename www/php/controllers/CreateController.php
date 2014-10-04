@@ -6,6 +6,9 @@ class CreateController extends HTMLController {
 		
 		$userModel = ModelFactory::getModel("UserModel");
 
+				$calendarModel = ModelFactory::getModel("CalendarModel");
+				$calendarModel->getAllCalendarEvents();
+
 
 		/*
 
@@ -77,7 +80,13 @@ class CreateController extends HTMLController {
 		$this->view = new View("SelectView");
 
 		$this->view->field1 = $_POST["field1"];
-		$this->view->error = $reason;
+
+		if(!isset($_POST['submit'])) {
+			$this->view->error = '';
+		} else {
+			$this->view->error = $reason;
+		}
+
 
 		$spaces = $calendarModel->findSpace("end"); 
 

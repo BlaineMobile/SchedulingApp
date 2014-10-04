@@ -11,7 +11,7 @@ class CalendarModel {
 	public function __construct() {
 		require_once('Google/Service/Calendar.php');
 		$this->user = ModelFactory::getModel("UserModel");
-		getAllCalendarEvents();
+		//$this->getAllCalendarEvents();
 	}
 
 	// public function createCalendar() {
@@ -20,13 +20,19 @@ class CalendarModel {
 	// }
 
 	public function getAllCalendarEvents() {
-		$service = new Google_CalendarService($this->user->getClient());
-		$eventsList = [];
+		$service = new Google_Service_Calendar($this->user->getClient());
 		$calList = $service->calendarList->listCalendarList();
+
+		$eventsList = array();
+
 		foreach($calList as $cal) {
-			$eventsList = array_merge($eventsList, $service->events->listEvents());
+
+			$eventsList = array_merge($eventsList, $service->events->listEvents($cal->id)->getItems());
+			
 		}
+
 		print_r($eventsList);
+
 		return $eventsList;
 	}
 
