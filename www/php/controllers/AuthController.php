@@ -3,8 +3,9 @@
 class AuthController extends Controller {
 
 	public function control(){	
-		$userModel = ModelFactory::getModel("UserModel");
+
 		if (isset($_GET['code'])) {
+			$userModel = ModelFactory::getModel("UserModel");
 
 			$userModel->auth();
 
