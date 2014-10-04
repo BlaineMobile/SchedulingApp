@@ -3,7 +3,7 @@
 		$this->createHead('Select a Scheduled place');
 		$this->createHeader();
 		$this->createFooter();
-		$this->head->render(); 
+		$this->head->render();
 	?>
 	<body>
 		<?php $this->header->render(); ?>
@@ -14,7 +14,13 @@
 
 			<form action="/" method="post"> 
 				<?= SecurityUtils::getCSRFField("select"); ?>
-				<input type="text" name="field1" value="<?= $this->field1; ?>" />
+
+				<?php 
+					$this->spaces = new View("SpaceList");
+					$this->spaces->spacesList = $this->spacesList;
+					$this->spaces->render();
+				?>
+
 				<input type="submit" name="submit">
 
 			</form>

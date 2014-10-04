@@ -20,8 +20,9 @@
 				<?= SecurityUtils::getCSRFField("createnew"); ?>
 				<input type="text" name="title" value="<?= $this->title; ?>" />
 				<input type="text" name="time" value="<?= $this->time; ?>" />
-				<input type="text" name="date" value="<?= $this->date; ?>" />
+				<input type="text" name="due" value="<?= $this->due; ?>" />
 
+				<!-- Add advanced settings -->
 
 				<input type="submit" name="submit">
 			</form>

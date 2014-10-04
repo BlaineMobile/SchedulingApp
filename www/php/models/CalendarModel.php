@@ -12,7 +12,6 @@ class CalendarModel {
 		require_once('Google/Service/Calendar.php');
 		$this->user = ModelFactory::getModel("UserModel");
 		$this->getAppCalendar();
-		//$this->getAllCalendarEvents();
 	}
 
 	public function getAppCalendar() {
@@ -52,17 +51,14 @@ class CalendarModel {
 
 	public function getAllCalendarEvents() {
 		$service = new Google_Service_Calendar($this->user->getClient());
-		$calList = $service->calendarList->listCalendarList();
+		$calList = $service->calendarList->listCalendarList()->getItems();
 
 		$eventsList = array();
 
 		foreach($calList as $cal) {
 
 			$eventsList = array_merge($eventsList, $service->events->listEvents($cal->id)->getItems());
-			
 		}
-
-		//print_r($eventsList);
 
 		return $eventsList;
 	}
@@ -82,6 +78,19 @@ class CalendarModel {
 	// 	return $service->tasks->listTasks($id);
 
 	// }
+
+}
+
+
+class Space {
+	public $date;
+	public $duration;
+	
+	function __construct($date, $duration) {
+		$this->date = $date;
+		$this->duration = $duration;
+	}
+
 
 }
 

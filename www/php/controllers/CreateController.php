@@ -6,9 +6,8 @@ class CreateController extends HTMLController {
 		
 		$userModel = ModelFactory::getModel("UserModel");
 
-				$calendarModel = ModelFactory::getModel("CalendarModel");
-				$calendarModel->getAllCalendarEvents();
-
+		/*$calendarModel = ModelFactory::getModel("CalendarModel");
+		$calendarModel->getAllCalendarEvents();*/
 
 		/*
 
@@ -72,9 +71,16 @@ class CreateController extends HTMLController {
 	private function refillDefaultForm($reason) {
 		$this->view = new View("CreateNewView");
 
-		$this->view->field1 = isset($_POST["field1"]) ? $_POST['field1'] : '' ;
-		$this->view->error = $reason;
-	}
+		$this->view->title = isset($_POST["title"]) ? $_POST['title'] : '' ;
+		$this->view->time = isset($_POST["time"]) ? $_POST['time'] : '' ;
+		$this->view->due = isset($_POST["due"]) ? $_POST['due'] : '' ;
+
+
+		if(!isset($_POST['submit'])) {
+			$this->view->error = '';
+		} else {
+			$this->view->error = $reason;
+		}	}
 
 	private function refillSelectForm($reason) {
 		$this->view = new View("SelectView");
@@ -97,11 +103,23 @@ class CreateController extends HTMLController {
 	private function selectSpace() {
 		$calendarModel = ModelFactory::getModel("CalendarModel");
 
+		//$spaces = $calendarModel->getSpaces($_POST['time'], $_POST['date']);
+
+		$space1 = new Space("monday", 3);
+		$space2 = new Space("froday", 5);
+		$space3 = new Space("saturday", 6);
+
+		$spaces = [$space1, $space2, $space3];
+
+
 		$this->view = new View("SelectView");
+		$this->view->spacesList = $spaces;
+
 	}
 
 	//TODO: this is poor naming
 	private function validateDefaultForm() {
+
 		if(!SecurityUtils::verifyCSRFToken()){
 			return "CSRF token wasn't found.";
 		}
