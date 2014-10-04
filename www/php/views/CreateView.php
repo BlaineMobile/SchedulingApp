@@ -11,7 +11,7 @@
 
 		<div id="content">
 
-			<form action="/" method="post"> 
+			<form action=""> 
 				<input type="text" name="field1" value="<?= $this->field1; ?>" />
 				<input type="submit" name="submit">
 			</form>

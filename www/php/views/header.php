@@ -1,4 +1,4 @@
-<div id="header" class='defaultNav' style='margin-bottom:3em'>
+<div id="header" class='default-nav' style='margin-bottom:3em'>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
