@@ -12,6 +12,7 @@ class CalendarModel {
 		require_once('Google/Service/Calendar.php');
 		$this->user = ModelFactory::getModel("UserModel");
 		$this->getAppCalendar();
+		$this->getBusyTimes();
 	}
 
 	public function getAppCalendar() {
@@ -48,6 +49,26 @@ class CalendarModel {
 	// 	$service = new Google_Service_
 	// 	$this->calendar = 
 	// }
+	public function getBusyTimes() {
+		$service = new Google_Service_Calendar($this->user->getClient());
+		
+		$calList = $service->calendarList->listCalendarList()->getItems();
+		$items = array();
+		foreach ($calList as $cal) {
+			$item = new Google_Service_Calendar_FreeBusyRequestItem();
+			$item->setId('{' . $cal->id . '}');
+			$items[] = $item;
+		}
+
+		$freebusy_req = new Google_Service_Calendar_FreeBusyRequest();
+		$freebusy_req->setTimeMin(date());
+		$freebusy_req->setTimeZone('America/Edmonton');
+		$freebusy_req->setItems($items);
+		$query = $service->freebusy->query($freebusy_req);
+
+		print_r($query);
+		return $query;
+	}
 
 	public function getAllCalendarEvents() {
 		$service = new Google_Service_Calendar($this->user->getClient());
