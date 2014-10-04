@@ -2,32 +2,35 @@
 
 class HomeController extends HTMLController {
 
-	public function __construct(){
-		$this->view = new View('HomeView');
-	}
-
 	public function control(){	
+		$this->view = new View('HomeView');
+
+
+		$userModel = ModelFactory::getModel("UserModel");
 
 		$this->view->createHead('My Tasks', ['somecssfile'],['somejsfile']);
 		$this->view->createHeader();
 		$this->view->createFooter();
-
-		require_once('Google/Service/Tasks.php');
 		
-		if($this->oauth->isAuthed()){
-			$service = new Google_Service_Tasks($this->oauth->getClient());
-			//$this->view->message = "Oh BOYY look at your tasklists.";
-			$tasklists = $service->tasklists->listTasklists();
+		if($userModel->isAuthed()){
+			$tasksModel = ModelFactory::getModel("TasksModel");
+
 			$this->view->tasksListList = new View("TasksListList");
-			$tasksLists = [];
-			foreach($tasklists->getItems() as $item) {
-				$tasks[] = $service->tasks->listTasks($item->id);
+			$taskLists = $tasksModel->getTasksLists();
+			
+			$tasks = [];
+
+			foreach($taskLists as $tasklist) {
+				$tasks[] = ["name" => $tasklist->title, "tasks" => $tasksModel->getTasks($tasklist->id)];
 			}
+			
 			$this->view->tasksListList->tasksLists = $tasks;
+
 		} else {
-			$this->view->authURL = $this->oauth->getAuthUrl();
-			//$this->view->message = "You're not logged in yet.";
+			$this->view->authURL = $userModel->getAuthUrl();
 		}
+
+		$this->view->render();
 
 	}
 

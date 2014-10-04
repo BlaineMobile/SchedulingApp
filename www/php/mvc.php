@@ -7,38 +7,29 @@ interface IController {
 }
 
 abstract class Controller implements IController{
-	protected $view;
     protected $parameters;
-    protected $oauth;
 
     public function setParameters($parameters){
         $this->parameters = $parameters;
-    }
-    
-    public function setOAuth($oauth){
-        $this->oauth = $oauth;
-    }
-
-	public function display(){
-		$this->view->render();
-	}
-
+    }   
 }
 
 abstract class HTMLController extends Controller {
+    protected $view;
+    
     function sendHeaders() {
         header('Content-Type: text/html; charset=utf-8');
     }
+
 }
 
 class ControllerFactory {
 
-    static function getController($controllerName, $parameters, $oauth){
+    static function getController($controllerName, $parameters){
         require_once(INCLUDE_DIR . 'controllers/' . $controllerName . '.php');
 
         $controller = new $controllerName();
         $controller->setParameters($parameters);
-        $controller->setOAuth($oauth);
 
         return $controller;
     }

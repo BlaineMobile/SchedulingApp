@@ -7,23 +7,35 @@ define('CLIENT_SECRET','IKwV-HFyNcGcZ8-SmRYs9SEj');
 define('REDIRECT_URI','http://localhost/oauth2callback');
 
 
-class OAuth {
+class UserModel {
+
 	private $client;
 
 	public function __construct() {
+
 		$this->client = new Google_Client();
 		$this->client->setClientId(CLIENT_ID);
 		$this->client->setClientSecret(CLIENT_SECRET);
 		$this->client->setRedirectUri(REDIRECT_URI);
 
+		$this->detectAccessToken();
+		
 		$this->client->setScopes("https://www.googleapis.com/auth/tasks");
 	}
 
 	public function getAuthUrl() {
 		return $this->client->createAuthUrl();
 	}
+
 	public function getClient() {
 		return $this->client;
+	}
+	private function detectAccessToken() {
+
+		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+		  $this->client->setAccessToken($_SESSION['access_token']);
+		}
+
 	}
 	public function setAccessToken($token) {
 		$this->client->setAccessToken($token);

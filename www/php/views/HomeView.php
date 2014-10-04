@@ -4,9 +4,11 @@
 		<?php $this->header->render(); ?>
 
 		<div id="content">
-			<a href="<?= $this->authURL;?>">Login!</a>
-			<?= $this->message; ?>
-			<?php $this->tasksListList->render(); ?>
+			<?php if($this->authURL): ?>
+				<a href="<?= $this->authURL;?>">Login!</a>
+			<?php else: ?>
+				<?php $this->tasksListList->render(); ?>
+			<?php endif; ?>
 		</div>
 
 		<?php $this->footer->render(); ?>

@@ -2,8 +2,8 @@
 	<?php 
 	foreach($this->tasksLists as $tasksList): 
 		$tasksListView = new View("TaskList");
-		$tasksListView->tasksList = $tasksList;
-		$tasksListView->name = ;
+		$tasksListView->tasksList = $tasksList["tasks"];
+		$tasksListView->taskListName = $tasksList["name"];
 		$tasksListView->render();
 	endforeach; 
 	?>

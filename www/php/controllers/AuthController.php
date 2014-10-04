@@ -1,20 +1,19 @@
 <?php
 
-class AuthController extends HTMLController {
-
-	public function __construct(){
-
-	}
+class AuthController extends Controller {
 
 	public function control(){	
+		$userModel = ModelFactory::getModel("UserModel");
 		if (isset($_GET['code'])) {
-			//TODO: redirect could be made better
-			$this->oauth->auth();
+
+			$userModel->auth();
+
 			$redirect = 'http://' . $_SERVER['HTTP_HOST'];
 			header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
 		}
-		//TODO: auth failed
-
+	}
+	public function sendHeaders() {
+		
 	}
 
 }

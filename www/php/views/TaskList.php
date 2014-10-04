@@ -1,6 +1,6 @@
-<h1><?= $this->name; ?></h1>
+<h1><?= $this->taskListName; ?></h1>
 
-<div id="<?= $this->name; ?>">
+<div id="<?= $this->taskListName; ?>">
 	<?php 
 	foreach($this->tasksList as $task): 
 		$taskView = new View("Task");
