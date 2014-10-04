@@ -6,8 +6,8 @@ class CreateController extends HTMLController {
 		
 		$userModel = ModelFactory::getModel("UserModel");
 
-		/*$calendarModel = ModelFactory::getModel("CalendarModel");
-		$calendarModel->getAllCalendarEvents();*/
+		$calendarModel = ModelFactory::getModel("CalendarModel");
+		$calendarModel->getAllCalendarEvents();
 
 		/*
 
