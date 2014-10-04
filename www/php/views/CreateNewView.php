@@ -12,6 +12,7 @@
 		<div id="content">
 
 			<form action="/" method="post"> 
+				<?= SecurityUtils::getCSRFField("createnew"); ?>
 				<input type="text" name="field1" value="<?= $this->field1; ?>" />
 				<input type="submit" name="submit">
 			</form>
