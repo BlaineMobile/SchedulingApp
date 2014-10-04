@@ -30,6 +30,7 @@ class UserModel {
 	public function getClient() {
 		return $this->client;
 	}
+
 	private function detectAccessToken() {
 
 		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
@@ -51,7 +52,12 @@ class UserModel {
 		$this->client->authenticate($_GET['code']);
 		$_SESSION['access_token'] = $this->client->getAccessToken();
 	}
+
+	public function getDefaultAvailableTimes() {
+		return [];
+	}
 }
+
 
 
 ?>

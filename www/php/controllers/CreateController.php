@@ -6,8 +6,12 @@ class CreateController extends HTMLController {
 		
 		$userModel = ModelFactory::getModel("UserModel");
 
-		/*$calendarModel = ModelFactory::getModel("CalendarModel");
-		$calendarModel->getAllCalendarEvents();*/
+		$calendarModel = ModelFactory::getModel("CalendarModel");
+		
+		$d = new DateTime();
+		$d->modify("+6 days");
+
+		$calendarModel->getFreeTimes($d,6);
 
 		/*
 
@@ -105,9 +109,9 @@ class CreateController extends HTMLController {
 
 		//$spaces = $calendarModel->getSpaces($_POST['time'], $_POST['date']);
 
-		$space1 = new Space("monday", 3);
-		$space2 = new Space("froday", 5);
-		$space3 = new Space("saturday", 6);
+		$space1 = new Duration("monday", 3);
+		$space2 = new Duration("froday", 5);
+		$space3 = new Duration("saturday", 6);
 
 		$spaces = [$space1, $space2, $space3];
 
