@@ -7,8 +7,46 @@ class CreateController extends HTMLController {
 		$userModel = ModelFactory::getModel("UserModel");
 
 
+		/*
 
-		// if($this->params[0] == "new") {
+		/create/new
+			/
+			/select
+
+
+		/create/exist
+
+
+
+		*/
+
+
+		if($this->parameters[0] == "new") {
+
+			if(count($this->parameters) == 0){
+
+				//VALIDATE
+
+				//INVALID
+				if(!$valid){
+					$this->view  = new View("CreateNewView");
+				}
+
+
+			} else if($this->parameters[1] == "select") {
+
+
+				$calendarModel = ModelFactory::getModel("CalendarModel");
+				$spaces = $calendarModel->findSpace("end"); //list of available spaces
+
+			} else {
+				$error404 = ControllerFactory::getErrorController("404Controller");
+				$error404->control();
+			}
+
+		} else if($this->parameters[0] == "exist") {
+
+		}
 
 
 		// 	if($this->params == 0){
@@ -39,7 +77,6 @@ class CreateController extends HTMLController {
 		// 	}
 
 
-		$this->view  = new View("CreateNewView");
 
 		$this->view->render();
 

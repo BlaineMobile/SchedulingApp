@@ -33,6 +33,17 @@ class ControllerFactory {
 
         return $controller;
     }
+    static function getErrorController() {
+
+        $controllerNam = 'Error'.$controllerName;
+
+        require_once(INCLUDE_DIR . 'controllers/' . $controllerName . '.php');
+
+        $controller = new $controllerName();
+
+        return $controller;
+
+    }
 
 }
 
