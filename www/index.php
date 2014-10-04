@@ -30,6 +30,9 @@
 */
 
 
+//TODO: we need to handle refreshtoken bug.
+
+
 define('INCLUDE_DIR', dirname(__FILE__) . '/php/' );
 define('LIB_DIR', dirname(__FILE__) . '/php/lib/');
 define('CSRF_LENGTH', 64);
@@ -57,13 +60,16 @@ if(count($elements)  == 0 || $elements[0] == '') {
     case "create":
         $controllerName = "CreateController";
         break;
+    case "logout":
+        $controllerName = "LogoutController";
+        break;
     default:
         $controllerName = "Error404Controller";
 } 
 
 $userModel = ModelFactory::getModel("UserModel");
 
-if(!$userModel->isAuthed()){
+if(!$userModel->isAuthed() && $controllerName != "AuthController"){
    $controllerName = "HomeController";
 }
 
