@@ -69,7 +69,7 @@ class CreateController extends HTMLController {
 	private function refillDefaultForm($reason) {
 		$this->view = new View("CreateNewView");
 
-		$this->view->field1 = $_POST["field1"];
+		$this->view->field1 = isset($_POST["field1"]) ? $_POST['field1'] : '';
 		$this->view->error = $reason;
 
 	}
