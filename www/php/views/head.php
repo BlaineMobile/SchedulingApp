@@ -5,6 +5,7 @@
 
 	<?php foreach($this->styles as $style): ?>
 		<link rel='stylesheet' type='text/css' href="<?= '/style/'.$style.'.css'?>" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<?php endforeach; ?>
 
 	<?php foreach($this->scripts as $script): ?>
