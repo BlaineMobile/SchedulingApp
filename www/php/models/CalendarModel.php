@@ -77,9 +77,7 @@ class CalendarModel {
 		//recursively add compute intersection into free or whatefer
 
 		foreach($free as $currentTime) {
-			foreach() {
-				$currentTime->computeIntersection();
-			}
+				//$currentTime->computeIntersection();
 		}
 
 
@@ -154,7 +152,7 @@ class Duration {
 	public $end;
 	
 	function __construct($start, $end) {
-		$this->start = $stat;
+		$this->start = $start;
 		$this->end = $end;
 	}
 
@@ -166,18 +164,16 @@ class Duration {
 		//Start and END both in
 		if($dur2->start > $this->start && $dur2->end < $this->end) {
 			return [new Duration($this->start, $cur2->start), new Duration($cur2->end, $this->end)];
-		}
-
 		//whole thing encompassed
 		} else if($dur2->start < $this->start && $dur2->end > $this->end) {
 			return null;
 
 		//start in end not
 		} else if($dur2->start > $this->start && $dur2->start < $this->end && $dur2->end > $this->end) {
-			return new Duration($this->start, cur2->start);
+			return new Duration($this->start, $cur2->start);
 		//end in start not
 		} else if($dur2->start < $this->start && $dur2->end < $this->end && $dur2->end > $this->start) {
-			return new Duration(cur2->end, this->end);
+			return new Duration($cur2->end, $this->end);
 	
 		} else {
 			return this;
