@@ -15,7 +15,7 @@
             <li>Name Here</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href='#'> Logout </a></li>
+            <li><a href='/logout'> Logout </a></li>
             <li class='active'><a href="#">Settings</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
