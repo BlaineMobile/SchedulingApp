@@ -1,7 +1,7 @@
 <html>
 
 	<?php 
-		$this->createHead('You 404ed', ['somecssfile'],['somejsfile']);
+		$this->createHead('You 404ed');
 		$this->createHeader();
 		$this->createFooter();
 

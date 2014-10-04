@@ -109,7 +109,7 @@ class View {
         $this->data[$fieldName] = $value;
     }
 
-    public function createHead($title, $styles = ['main'], $scripts = []) {
+    public function createHead($title, $styles = ['general'], $scripts = ['general']) {
         $head = new View("head");
 
         $head->styles = $styles;
