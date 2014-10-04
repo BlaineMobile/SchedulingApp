@@ -2,7 +2,7 @@
 
 class CalendarModel {
 
-	const CALENDAR_NAME = "App Calendar";
+	CONST CALENDAR_NAME = 'App Calendar';
 
 	private $user;
 	private $calendar;
@@ -11,7 +11,31 @@ class CalendarModel {
 	public function __construct() {
 		require_once('Google/Service/Calendar.php');
 		$this->user = ModelFactory::getModel("UserModel");
+		$this->getAppCalendar();
 		//$this->getAllCalendarEvents();
+	}
+
+	public function getAppCalendar() {
+		$service = new Google_Service_Calendar($this->user->getClient());
+		$calList = $service->calendarList->listCalendarList()->getItems();
+		$flag = false;
+		foreach ($calList as $cal) {
+			if ($cal->getSummary() == self::CALENDAR_NAME) {
+				$flag = true;
+				$this->calendar = $cal;
+			}
+		}
+		if (!$flag) {
+			// Create new Calendar
+			$newCalendar = new Google_Service_Calendar_Calendar();
+			$newCalendar->setSummary(self::CALENDAR_NAME);
+			$newCalendar->setTimezone('America/Edmonton');
+
+			$this->calendar = $service->calendars->insert($newCalendar);
+			print("Created Calendar with id: " . $this->calendar->getId());
+		}
+		print("App Calendar ID: " . $this->calendar->getId() . " SUMMARY: " . $this->calendar->getSummary());
+		//return $calendar;
 	}
 
 	// public function createCalendar() {
@@ -31,7 +55,7 @@ class CalendarModel {
 			
 		}
 
-		print_r($eventsList);
+		//print_r($eventsList);
 
 		return $eventsList;
 	}
