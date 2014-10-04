@@ -12,3 +12,31 @@
     height:10em;
     width:10em;
 }
+
+.styled-box{
+    border-style:solid;
+    border-color:#5cb85c;
+}
+.styled-box:focus { 
+    outline: none;
+    border-color: #4cae4c;
+    box-shadow: 0 0 5px #4cae4c;
+}
+
+.seperator{
+    margin-top:1em;
+}
+
+input:invalid {
+    border-color:#b92c28;
+    border-style:solid;
+}
+
+.green-submit{
+    border-radius:5px;
+    border-width: 1px;
+    border-color:#4cae4c;
+    border-style:solid;
+    background-color:#5cb85c;
+    color:#fff;
+}
