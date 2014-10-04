@@ -23,7 +23,6 @@
                 </a>
             </div>
 
-
             <div class='page-header'></div>
 
             <h2> Manage </h2>

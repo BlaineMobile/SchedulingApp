@@ -8,7 +8,6 @@ function toggleSettings(){
         $('#toggle-settings').css('display', 'none');
         $('#toggle-settings').html('Show Advanced Settings');
     }
-    return 0;
 }
 
 $('document').ready(function(){
