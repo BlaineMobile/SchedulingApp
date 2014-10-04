@@ -3,17 +3,23 @@
 		$this->createHead('Create new Schedule Thing', ['somecssfile'],['somejsfile']);
 		$this->createHeader();
 		$this->createFooter();
+		
 		$this->head->render(); 
 	?>
 	<body>
 		<?php $this->header->render(); ?>
 
-		<div id="content" style='text-align:center'>
-			<a href="<?= $this->authURL;?>">
-				<button id='login' class='btn btn-success' type='button'> LOGIN </button> 
-			</a>
+		<div id="content">
+
+			<form action="/" method="post"> 
+				<input type="text" name="field1" value="<?= $this->field1; ?>" />
+				<input type="submit" name="submit">
+			</form>
+
 		</div>
 
 		<?php $this->footer->render(); ?>
+
 	</body>
+
 </html>

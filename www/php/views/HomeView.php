@@ -9,7 +9,7 @@
 		<?php $this->header->render(); ?>
 
 		<div id="content" style='text-align:center'>
-
+			
 			<h1>You're logged in</h1>
 			<a href="/create/new">
 				<button id='create' class='btn btn-success' type='button'> CREATE </button>
