@@ -32,10 +32,17 @@ class CalendarModel {
 			$newCalendar->setTimezone('America/Edmonton');
 
 			$this->calendar = $service->calendars->insert($newCalendar);
-			print("Created Calendar with id: " . $this->calendar->getId());
 		}
-		print("App Calendar ID: " . $this->calendar->getId() . " SUMMARY: " . $this->calendar->getSummary());
-		//return $calendar;
+		return $this->calendar;
+	}
+
+	public function getFreeTimes($endDate, $requiredTime) {
+		$service = new Google_Service_Calendar($this->user->getClient());
+		$eventList = $this->getAllCalendarEvents();
+
+		// set default timezone
+		date_default_timezone_set('America/Edmonton');
+
 	}
 
 	// public function createCalendar() {
