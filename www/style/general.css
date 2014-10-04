@@ -1,0 +1,14 @@
+.default-nav{
+    margin-bottom:5em;
+}
+
+.default-button{
+    height:5em;
+    width:15em;
+}
+
+.circle-button{
+    border-radius:50%;
+    height:10em;
+    width:10em;
+}
