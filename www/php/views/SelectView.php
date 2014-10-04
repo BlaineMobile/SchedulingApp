@@ -1,6 +1,6 @@
 <html>
 	<?php
-		$this->createHead('Select a Scheduled place', ['somecssfile'],['somejsfile']);
+		$this->createHead('Select a Scheduled place');
 		$this->createHeader();
 		$this->createFooter();
 		$this->head->render();

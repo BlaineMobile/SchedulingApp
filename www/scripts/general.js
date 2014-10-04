@@ -1,0 +1,12 @@
+$('document').ready(function(){
+    $('#nextStep').click(function(){
+        updateNPCs();
+    });
+    $('#info').click(function(){
+        infoPopup();
+    });
+    $('#playAgain').click(function(){
+        reinitializeNPCs();
+    })
+    initializeNPCs();
+});
