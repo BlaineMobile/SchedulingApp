@@ -3,6 +3,7 @@ class Error404Controller extends HTMLController {
 
 	public function __construct(){
 		$this->view = new View('404');
+		$this->view->render();
 	}
 
 	//TODO: is this really the proper way to do this. Maybe this doesn't need its own controller

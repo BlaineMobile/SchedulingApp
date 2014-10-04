@@ -20,7 +20,7 @@ class UserModel {
 
 		$this->detectAccessToken();
 		
-		$this->client->setScopes("https://www.googleapis.com/auth/tasks");
+		$this->client->setScopes("https://www.googleapis.com/auth/calendar");
 	}
 
 	public function getAuthUrl() {

@@ -3,6 +3,7 @@
 		$this->createHead('Create new Schedule Thing', ['somecssfile'],['somejsfile']);
 		$this->createHeader();
 		$this->createFooter();
+		
 		$this->head->render(); 
 	?>
 	<body>
@@ -10,8 +11,10 @@
 
 		<div id="content">
 
-			<h1>You're logged in</h1>
-			<a href="/create/new">Create new event</a>
+			<form action=""> 
+				<input type="text" name="field1" value="<?= $this->field1; ?>" />
+				<input type="submit" name="submit">
+			</form>
 
 		</div>
 

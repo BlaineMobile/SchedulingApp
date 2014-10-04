@@ -49,17 +49,23 @@ $elements = explode('/', $path);
 
 $controllerName = "";   
 
-
 if(count($elements)  == 0 || $elements[0] == '') {                  
 	$controllerName = "HomeController";
 } else if(strstr($elements[0], 'oauth2callback')) {
     $controllerName = "AuthController";
 } else switch(strtolower(array_shift($elements))) {
-
+    case "create":
+        $controllerName = "CreateController";
+        break;
     default:
         $controllerName = "Error404Controller";
 } 
-//TODO: refactor controller calling, idk that display needs to be called separateley.
+
+$userModel = ModelFactory::getModel("UserModel");
+
+if(!$userModel->isAuthed()){
+   $controllerName = "HomeController";
+}
 
 $controller = ControllerFactory::getController($controllerName, $elements);
 $controller->control();
