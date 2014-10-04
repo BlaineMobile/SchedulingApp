@@ -1,6 +1,6 @@
 <html>
 	<?php
-		$this->createHead-('Create new Schedule Thing', ['somecssfile'],['somejsfile']);
+		$this->createHead('Create new Schedule Thing', ['somecssfile'],['somejsfile']);
 		$this->createHeader();
 		$this->createFooter();
 		$this->head->render(); 
@@ -13,6 +13,5 @@
 		</div>
 
 		<?php $this->footer->render(); ?>
-
 	</body>
 </html>

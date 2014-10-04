@@ -1,21 +1,18 @@
 <html>
 	<?php
-		$this->createHead('Create new Schedule Thing', ['somecssfile'],['somejsfile']);
+		$this->createHead('Select a Scheduled place', ['somecssfile'],['somejsfile']);
 		$this->createHeader();
 		$this->createFooter();
-		
 		$this->head->render(); 
 	?>
 	<body>
 		<?php $this->header->render(); ?>
 
 		<div id="content">
-
-			<form action=""> 
-				<input type="text" name="field1" value="<?= $this->field1; ?>" />
-				<input type="submit" name="submit">
+			
+			<h1>Select from our stuff</h1>
+			<form >
 			</form>
-
 		</div>
 
 		<?php $this->footer->render(); ?>
