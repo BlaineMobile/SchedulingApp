@@ -12,7 +12,10 @@ class CalendarModel {
 		date_default_timezone_set('America/Edmonton');
 		require_once('Google/Service/Calendar.php');
 		$this->user = ModelFactory::getModel("UserModel");
-		$this->getAppCalendar();
+		//$this->getAppCalendar();
+		$cur = new DateTime();
+		$cur->modify('+1 day');
+		$this->getBusyTimes(new DateTime(), $cur);
 	}
 
 	public function getAppCalendar() {
@@ -105,9 +108,22 @@ class CalendarModel {
 		$freebusy_req->setTimeMax($end->format('Y-m-d\TH:i:sP'));
 		$freebusy_req->setTimeZone('America/Edmonton');
 		$freebusy_req->setItems($items);
-		$query = $service->freebusy->query($freebusy_req);
+		$response = $service->freebusy->query($freebusy_req);
 
-		return $query;
+		$calList = $response->getCalendars()->busy;
+		print_r($calList);
+		// $busyTimes = array();
+		// foreach ($calList as $cal) {
+		// 	$busyTimes[] =  $cal.getBusy();
+		// 	foreach($busyTime as $busy) {
+		// 		print($busy->getStart . $busy->getEnd());
+		// 	}
+		// 	//$busyTimes[] = $busyTime;
+		// }
+
+		//print_r($calList);
+
+		//return $busyTimes;
 	}
 
 	public function getAllCalendarEvents($start, $due) {

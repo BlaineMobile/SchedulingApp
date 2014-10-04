@@ -21,6 +21,10 @@ class UserModel {
 		$this->detectAccessToken();
 		
 		$this->client->setScopes("https://www.googleapis.com/auth/calendar");
+		if($this->client->isAccessTokenExpired()) {
+			$authUrl = $this->getAuthUrl();
+   			header('Location: ' . filter_var($this->getAuthUrl(), FILTER_SANITIZE_URL));
+		}
 	}
 
 	public function getAuthUrl() {
