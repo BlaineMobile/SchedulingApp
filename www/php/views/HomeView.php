@@ -8,25 +8,30 @@
 	<body>
 		<?php $this->header->render(); ?>
 
-		<div id="content" style='text-align:center'>
-			<h2> Schedule for:</h2>
+		<div id="content" class='container'>
+			<h2> Schedule:</h2>
 
-            <span>
-                <a href='/create/new' >
-                    <button class='btn btn-success default-button' type='button'> Existing Event </button>
-                </a>
-            </span>
-            <span>
-                <a href='#'>
+            <div>
+                <a href='/create/new'>
                     <button class='btn btn-success default-button' type='button'> New Event </button>
                 </a>
-            </span>
+            </div>
+
+            <div class='seperator'>
+                <a href='/create/exist' >
+                    <button class='btn btn-success default-button' type='button'> Existing Event </button>
+                </a>
+            </div>
+
+
             <div class='page-header'></div>
 
-            <h2> Or </h2>
-            <a href='#'>
-            	<button class='btn btn-success default-button' type='button'> Edit </button>
-            </a>
+            <h2> Manage </h2>
+            <div>
+	            <a href='#'>
+	            	<button class='btn btn-success default-button' type='button'> Edit </button>
+	            </a>
+	        </div>
 
 		</div>
 

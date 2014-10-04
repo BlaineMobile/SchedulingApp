@@ -5,13 +5,10 @@
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
           </button>
-          <a class="navbar-brand" href="#">Scheduling App</a>
+          <a class="navbar-brand" href="/">Scheduling App</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li>Name Here</li>
-          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href='/logout'> Logout </a></li>
             <li class='active'><a href="#">Settings</a></li>
